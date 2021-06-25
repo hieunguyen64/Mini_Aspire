@@ -33,7 +33,7 @@ class UserController extends Controller {
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors()->toJson(), 400);
+            return response()->json($validator->errors(), 400);
         }
 
         $user = User::create([
@@ -49,7 +49,6 @@ class UserController extends Controller {
 
     public function getAuthenticatedUser() {
         try {
-
             if (!$user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
