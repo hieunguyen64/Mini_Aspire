@@ -14,9 +14,10 @@ class CreateUserLoanRepaymentTable extends Migration {
         Schema::create("user_loan_repayment", function (Blueprint $table) {
             $table->increments("id");
             $table->integer("loan_id");
-            $table->dateTime("due_date");
-            $table->dateTime("actual_due_date");
+            $table->date("due_date");
+            $table->date("actual_due_date")->nullable();
             $table->double("payment_due", 12, 2);
+            $table->double("actual_payment_due", 12, 2)->nullable();
             $table->integer("status")->comment("0 = uncomplete; 1 = completed");
             $table->timestamps();
         });
